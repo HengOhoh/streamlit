@@ -5,10 +5,13 @@ from datetime import datetime
 import requests
 import plotly.express as px
 import plotly.graph_objects as go
-import logging
+from dotenv import load_dotenv
+import os
 
-DATABASE_ID = '1642c9a5264b800794b5e0fff150bbea'
-NOTION_TOKEN = 'secret_Vf2Yb1QHr1IOR8o2qs1OR88jDMP21ORSBJg4DHmOdvN'
+load_dotenv()
+
+DATABASE_ID = os.environ.get('DATABASE_ID')
+NOTION_TOKEN = os.environ.get('NOTION_TOKEN')
 base_url = f'https://api.notion.com/v1/databases/{DATABASE_ID}/query'
 
 def get_current_month_pages():
@@ -44,6 +47,7 @@ def get_current_month_pages():
 
     res = requests.post(base_url, headers=headers, json=filter)
     data = res.json()
+    print(res)
     result = data['results']
     return result
 
