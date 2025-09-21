@@ -15,8 +15,8 @@ NOTION_TOKEN = os.environ.get('NOTION_TOKEN')
 base_url = f'https://api.notion.com/v1/databases/{DATABASE_ID}/query'
 
 def get_current_month_pages():
-    # current_date = datetime.today()
-    current_date = datetime(2025, 8, 31)
+    current_date = datetime.today()
+    # current_date = datetime(2025, 8, 31)
     current_date_iso = current_date.isoformat()
     first_day_of_month = current_date.replace(day=1).isoformat()
     filter = {
@@ -79,4 +79,3 @@ if __name__ == '__main__':
     
     fig = go.Figure(data=[go.Pie(labels=cat , values=spend)])
     st.plotly_chart(fig, use_container_width=False)
-    st.write('This one is the Heng')
