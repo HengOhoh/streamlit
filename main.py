@@ -78,8 +78,8 @@ def get_spending():
 
 if __name__ == '__main__':
     
-    current_month_spending = get_current_month_pages()
-    cat, spend = get_spending(current_month_spending)
+    # current_month_spending = get_current_month_pages()
+    cat, spend = get_spending()
     
     fig = go.Figure(data=[go.Pie(labels=cat , values=spend)])
     st.plotly_chart(fig, use_container_width=False)
