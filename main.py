@@ -63,7 +63,9 @@ def get_current_month_pages():
 #     grouped_data = df.groupby('Category')['Spending'].sum()
 #     return grouped_data
 
-def get_spending(results):
+@st.cache_data(ttl=60)
+def get_spending():
+    results = get_current_month_pages()
     spendings_categories = []
     spendings = []
     categories = []
@@ -81,3 +83,5 @@ if __name__ == '__main__':
     
     fig = go.Figure(data=[go.Pie(labels=cat , values=spend)])
     st.plotly_chart(fig, use_container_width=False)
+
+    time.sleep(60)
