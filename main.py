@@ -1,3 +1,4 @@
+import time
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -74,8 +75,11 @@ def get_spending(results):
     return categories, spendings
 
 if __name__ == '__main__':
-    current_month_spending = get_current_month_pages()
-    cat, spend = get_spending(current_month_spending)
-    
-    fig = go.Figure(data=[go.Pie(labels=cat , values=spend)])
-    st.plotly_chart(fig, use_container_width=False)
+    while True:
+        current_month_spending = get_current_month_pages()
+        cat, spend = get_spending(current_month_spending)
+        
+        fig = go.Figure(data=[go.Pie(labels=cat , values=spend)])
+        st.plotly_chart(fig, use_container_width=False)
+
+        time.sleep(5)
